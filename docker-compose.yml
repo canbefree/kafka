@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   zoo1:
@@ -8,6 +8,8 @@ services:
     ports:
       - "2181:2181"
     container_name: zookeeper
+    networks: 
+      - app_net
 
   # kafka version: 1.1.0
   # scala version: 2.12
@@ -24,3 +26,9 @@ services:
     depends_on:
       - zoo1
     container_name: kafka
+    networks: 
+      - app_net
+
+networks:
+  app_net:
+    external: true
